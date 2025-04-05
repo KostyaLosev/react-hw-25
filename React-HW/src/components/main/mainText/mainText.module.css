@@ -1,0 +1,75 @@
+.maintext {
+    text-align: center;
+}
+
+.maintext h1 {
+    font-size: 50px;
+    color: #35B8BE;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.maintext p {
+    font-size: 16px;
+    max-width: 450px;
+    margin: 0 auto 50px;
+    color: #546285;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.phoneTooltip {
+    position: relative;
+    color: #35B8BE;
+    cursor: pointer;
+}
+
+.phoneTooltip::after {
+    content: "+1234567890"; 
+    position: absolute;
+    bottom: 110%; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #35B8BE;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.phoneTooltip:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .maintext h1 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .maintext h1 {
+        font-size: 32px;
+    }
+
+    .maintext p {
+        font-size: 14px;
+        max-width: 380px;
+    }
+}
+
+@media (max-width: 480px) {
+    .maintext h1 {
+        font-size: 28px;
+    }
+
+    .maintext p {
+        font-size: 14px;
+        max-width: 90%;
+    }
+}
