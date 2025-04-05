@@ -73,12 +73,14 @@ const Items = ({ incrementCart }) => {
                         <img src={item.img} alt={item.meal} />
                         <div className={styles.itemscardContent}>
                             <div className={styles.itemscardHeader}>
-                                <h3>{item.meal}</h3>
-                                <p>${item.price} USD</p>
+                            <h3>{item.meal}</h3>
+                            <p >${item.price} </p>
                             </div>
                             <p className={styles.description}>
-                                {item.instructions.substring(0, 80)}...
-                            </p>
+                                {item.instructions.length > 80
+                                ? `${item.instructions.substring(0, 80)}...`
+                                    : item.instructions}
+                                </p>
                             <div className={styles.buttonWrapper}>
                                 <input
                                     type="number"
