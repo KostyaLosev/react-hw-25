@@ -1,0 +1,15 @@
+.brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #546285;
+    max-width: 250px;
+    line-height: 1.6;
+}
