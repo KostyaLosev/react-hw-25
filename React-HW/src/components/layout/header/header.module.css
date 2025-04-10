@@ -1,0 +1,143 @@
+.header {
+    background-color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logoImage {
+    width: 40px; 
+}
+
+.navigation {
+    margin-left: auto;
+    margin-right: 100px;
+}
+
+.navigation ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #28224B;
+}
+
+
+.basket {
+    position: relative;
+    background-color: #17bebb;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.basket img {
+    width: 24px;
+}
+
+/*.basket::after {
+    content: "0"; 
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: white;
+    color: #35B8BE;
+    font-size: 12px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+} */
+
+.cartCount {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: white;
+    color: #35B8BE;
+    font-size: 12px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logoImage {
+        width: 30px;
+    }
+
+    .navigation {
+        margin-right: 0;
+        margin-top: 10px;
+    }
+
+    .navigation ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .navigation a {
+        font-size: 14px;
+    }
+
+    .basket {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 10px 15px;
+    }
+
+    .logoImage {
+        width: 25px;
+    }
+
+    .navigation a {
+        font-size: 12px;
+    }
+
+    .basket img {
+        width: 20px;
+    }
+
+    .basket::after {
+        font-size: 10px;
+        width: 20px;
+        height: 20px;
+    }
+}
