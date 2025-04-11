@@ -1,12 +1,13 @@
 import React from "react";
-import styles from "./header.module.css";
+import NavLinks from "./navLinks/NavLinks";
+import styles from "./header.module.scss";
 import Logo from "../../../assets/Logo.png";
 import Basket from "../../../assets/Basket.png";
 
 const Header = ({ cartCount }) => {
     const navLinks = [
-        { name: "Home", url: "#" },
-        { name: "Menu", url: "#" },
+        { name: "Home", url: "/" },
+        { name: "Menu", url: "/menu" },
         { name: "Company", url: "#" },
         { name: "Login", url: "#" }
     ];
@@ -18,15 +19,7 @@ const Header = ({ cartCount }) => {
                     <img src={Logo} alt="Logo" className={styles.logoImage} />
                 </div>
                 <nav className={styles.navigation}>
-                    <ul>
-                        {navLinks.map((link, index) => (
-                            <li key={index}>
-                                <a href={link.url} style={link.name === "Menu" ? { color: "#35B8BE" } : {}}>
-                                    {link.name}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
+                    <NavLinks links={navLinks} />
                 </nav>
                 <div className={styles.basket}>
                     <img src={Basket} alt="Basket" className={styles.basket} />

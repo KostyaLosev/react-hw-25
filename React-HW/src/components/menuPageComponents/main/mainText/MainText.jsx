@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./mainText.module.css";
+import styles from "./mainText.module.scss";
 
 const MainText = () => {
     return (

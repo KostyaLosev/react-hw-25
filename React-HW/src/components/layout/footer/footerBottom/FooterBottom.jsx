@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./footerBottom.module.css";
+import styles from "./footerBottom.module.scss";
 import Instagram from "../../../../assets/Instagram.png";
 import Twitter from "../../../../assets/Twitter.png";
 import Youtube from "../../../../assets/Youtube.png";

@@ -1,7 +1,7 @@
 import FooterBrand from "./footerBrand/FooterBrand";
 import FooterLinks from "./footerLinks/FooterLinks";
 import FooterBottom from "./footerBottom/FooterBottom";
-import styles from "./footer.module.css";
+import styles from "./footer.module.scss";
 
 const Footer = () => {
     return (

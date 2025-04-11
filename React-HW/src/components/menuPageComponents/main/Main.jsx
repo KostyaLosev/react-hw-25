@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./main.module.css";
+import styles from "./main.module.scss";
 import MainText from "./mainText/MainText";
 import Items from "./items/Items";
 

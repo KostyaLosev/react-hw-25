@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./footerBrand.module.css";
+import styles from "./footerBrand.module.scss";
 import Logo from "../../../../assets/Logo.png";
 
 const FooterBrand = () => {

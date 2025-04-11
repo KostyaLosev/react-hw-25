@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./items.module.css";
+import styles from "./items.module.scss";
 import { fetchMeals } from "../../../../services/api";
 import SeeMoreButton from "../seeMoreButton/SeeMoreButton";
 import Categories from "../categories/Categories"; 
