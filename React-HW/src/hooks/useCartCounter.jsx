@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import { useState, useEffect } from 'react';
 
-const CartCounter = ({ children }) => {
-    const [cartCount, setCartCount] = useState(0);
+const useCartCounter = () => {
+    const [cartCount, setCartCount] = useState(() => {
+        const savedCartCount = localStorage.getItem('cartCount');
+        return savedCartCount ? parseInt(savedCartCount, 10) : 0;
+    });
+
+    useEffect(() => {
+        localStorage.setItem('cartCount', cartCount);
+    }, [cartCount]);
 
     const incrementCart = (amount) => {
-        setCartCount(prevCount => prevCount + amount);
+        setCartCount((prevCount) => prevCount + amount);  
     };
 
-    return children(cartCount, incrementCart);
+    return { cartCount, incrementCart };
 };
 
-export default CartCounter;
+export default useCartCounter;

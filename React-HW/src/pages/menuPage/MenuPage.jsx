@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./menuPage.module.scss";
 import Footer from "../../components/layout/footer/Footer";
 import Header from "../../components/layout/header/Header";
 import Main from "../../components/menuPageComponents/main/Main";
+import useCartCounter from "../../hooks/useCartCounter";
+
+
 
 const MenuPage = () => {
-    const [cartCount, setCartCount] = useState(0);
-
-    const incrementCart = (amount) => {
-        setCartCount(prevCount => prevCount + amount);
-    };
+    const { cartCount, incrementCart } = useCartCounter(); 
 
     return (
         <div className={styles.container}>
