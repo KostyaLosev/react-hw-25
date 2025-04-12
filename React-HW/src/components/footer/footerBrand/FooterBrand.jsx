@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "./footerBrand.module.css"
 import Logo from "../../../assets/Logo.svg"
+import styles from "./footerBrand.module.css"
+
 
 const FooterBrand = () => {
     return (

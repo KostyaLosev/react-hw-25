@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./header.module.css"
-import Logo from "../../assets/Logo.svg"
 import Basket from "../../assets/Basket.png"
+import Logo from "../../assets/Logo.svg"
 
 const Header = () => {
 
