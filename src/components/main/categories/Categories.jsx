@@ -1,14 +1,16 @@
 import React from "react";
-import styles from "./categories.module.css"
+import styles from "./categories.module.css";
 
-const Categories = () => {
+const Categories = ({ categories }) => {
     return (
         <div className={styles.categories}>
-            <button>Dessert</button>
-            <button>Dinner</button>
-            <button>Breakfast</button>
+            {categories.map((category) => (
+                <button key={category}>
+                    {category}
+                </button>
+            ))}
         </div>
-    )
-}
+    );
+};
 
 export default Categories;
