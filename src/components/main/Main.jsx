@@ -13,10 +13,10 @@ const Main = () => {
         <div className={styles.main}>
             <MainText />
             <Categories categories={uniqueCategories} />
-            <Items />
+            <Items itemsData={itemsData} />
             <SeeMoreButton />
         </div>
-    );
+    ); 
 };
 
 export default Main;
