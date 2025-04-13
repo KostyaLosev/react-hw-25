@@ -17,7 +17,6 @@ class Items extends Component {
 
     async componentDidMount() {
         const meals = await fetchMeals();
-        console.log("Data:", meals);
 
         const categories = [...new Set(meals.map(item => item.category))];
 
