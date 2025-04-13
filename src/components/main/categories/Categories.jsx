@@ -1,27 +1,18 @@
 import React from "react";
 import styles from "./categories.module.css";
 
-const Categories = ({ onSelectCategory, selectedCategory }) => {
+const Categories = ({ categories, onSelectCategory, selectedCategory }) => {
     return (
         <div className={styles.categories}>
-            <button 
-                onClick={() => onSelectCategory("Dessert")} 
-                className={selectedCategory === "Dessert" ? styles.active : ""}
-            >
-                Dessert
-            </button>
-            <button 
-                onClick={() => onSelectCategory("Dinner")} 
-                className={selectedCategory === "Dinner" ? styles.active : ""}
-            >
-                Dinner
-            </button>
-            <button 
-                onClick={() => onSelectCategory("Breakfast")} 
-                className={selectedCategory === "Breakfast" ? styles.active : ""}
-            >
-                Breakfast
-            </button>
+            {categories.map((category) => (
+                <button
+                    key={category}
+                    onClick={() => onSelectCategory(category)}
+                    className={selectedCategory === category ? styles.active : ""}
+                >
+                    {category}
+                </button>
+            ))}
         </div>
     );
 };

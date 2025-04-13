@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import styles from "./items.module.css";
 import { fetchMeals } from "../../../services/api";
 import SeeMoreButton from "../seeMoreButton/SeeMoreButton";
-import Categories from "../categories/Categories"; 
+import Categories from "../categories/Categories";
 
 const Items = ({ incrementCart }) => {
     const [itemsData, setItemsData] = useState([]);
     const [filteredItems, setFilteredItems] = useState([]);
     const [visibleItems, setVisibleItems] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [selectedCategory, setSelectedCategory] = useState("Dessert"); 
-    const itemsPerPage = 6;
+    const [selectedCategory, setSelectedCategory] = useState("");
+    const [categories, setCategories] = useState([]);
     const [quantities, setQuantities] = useState({});
+    const itemsPerPage = 6;
 
     useEffect(() => {
         const getMeals = async () => {
@@ -23,11 +24,15 @@ const Items = ({ incrementCart }) => {
                 return acc;
             }, {});
 
+            const uniqueCategories = [...new Set(meals.map(item => item.category))];
+
             setItemsData(meals);
-            setFilteredItems(meals);
-            setVisibleItems(meals.slice(0, itemsPerPage));
-            setCurrentIndex(itemsPerPage);
+            setCategories(uniqueCategories);
             setQuantities(initialQuantities);
+
+            if (uniqueCategories.length > 0) {
+                setSelectedCategory(uniqueCategories[0]);
+            }
         };
 
         getMeals();
@@ -45,7 +50,10 @@ const Items = ({ incrementCart }) => {
 
     const loadMore = () => {
         const newIndex = currentIndex + itemsPerPage;
-        setVisibleItems([...visibleItems, ...filteredItems.slice(currentIndex, newIndex)]);
+        setVisibleItems([
+            ...visibleItems,
+            ...filteredItems.slice(currentIndex, newIndex),
+        ]);
         setCurrentIndex(newIndex);
     };
 
@@ -66,21 +74,25 @@ const Items = ({ incrementCart }) => {
 
     return (
         <div>
-            <Categories onSelectCategory={setSelectedCategory} selectedCategory={selectedCategory} /> 
+            <Categories
+                categories={categories}
+                onSelectCategory={setSelectedCategory}
+                selectedCategory={selectedCategory}
+            />
             <div className={styles.itemsgrid}>
                 {visibleItems.map((item) => (
                     <div key={item.id} className={styles.itemscard}>
                         <img src={item.img} alt={item.meal} />
                         <div className={styles.itemscardContent}>
                             <div className={styles.itemscardHeader}>
-                            <h3>{item.meal}</h3>
-                            <p >${item.price} </p>
+                                <h3>{item.meal}</h3>
+                                <p>${item.price}</p>
                             </div>
                             <p className={styles.description}>
                                 {item.instructions.length > 80
-                                ? `${item.instructions.substring(0, 80)}...`
+                                    ? `${item.instructions.substring(0, 80)}...`
                                     : item.instructions}
-                                </p>
+                            </p>
                             <div className={styles.buttonWrapper}>
                                 <input
                                     type="number"
@@ -97,7 +109,9 @@ const Items = ({ incrementCart }) => {
                     </div>
                 ))}
             </div>
-            {currentIndex < filteredItems.length && <SeeMoreButton onClick={loadMore} />}
+            {currentIndex < filteredItems.length && (
+                <SeeMoreButton onClick={loadMore} />
+            )}
         </div>
     );
 };
