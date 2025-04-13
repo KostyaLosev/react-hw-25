@@ -11,7 +11,7 @@ class Items extends Component {
             visibleItems: [],
             currentIndex: 0,
             itemsPerPage: 6,
-            quantities: {} 
+            quantities: {},
         };
     }
 
@@ -19,19 +19,23 @@ class Items extends Component {
         const meals = await fetchMeals();
         console.log("Data:", meals);
 
-        this.setState((prevState) => {
-            const initialQuantities = {};
-            meals.forEach((item) => {
-                initialQuantities[item.id] = 1; 
-            });
+        const categories = [...new Set(meals.map(item => item.category))];
 
-            return {
-                itemsData: meals,
-                visibleItems: meals.slice(0, prevState.itemsPerPage),
-                currentIndex: prevState.itemsPerPage,
-                quantities: initialQuantities,
-            };
+        const initialQuantities = {};
+        meals.forEach((item) => {
+            initialQuantities[item.id] = 1;
         });
+
+        this.setState({
+            itemsData: meals,
+            visibleItems: meals.slice(0, this.state.itemsPerPage),
+            currentIndex: this.state.itemsPerPage,
+            quantities: initialQuantities,
+        });
+
+        if (this.props.onCategoriesExtracted) {
+            this.props.onCategoriesExtracted(categories);
+        }
     }
 
     loadMore = () => {
@@ -48,7 +52,7 @@ class Items extends Component {
     };
 
     handleInputChange = (id, event) => {
-        const value = parseInt(event.target.value, 10) || 0; 
+        const value = parseInt(event.target.value, 10) || 0;
         this.setState((prevState) => ({
             quantities: {
                 ...prevState.quantities,
@@ -58,10 +62,9 @@ class Items extends Component {
     };
 
     handleAddToCart = (id) => {
-        const quantityToAdd = this.state.quantities[id]; 
-
+        const quantityToAdd = this.state.quantities[id];
         if (quantityToAdd > 0) {
-            this.props.incrementCart(quantityToAdd); 
+            this.props.incrementCart(quantityToAdd);
         }
     };
 
@@ -75,10 +78,10 @@ class Items extends Component {
                         <p>${item.price}</p>
                     </div>
                     <p className={styles.description}>
-                                {item.instructions.length > 80
-                                ? `${item.instructions.substring(0, 80)}...`
-                                    : item.instructions}
-                                </p>
+                        {item.instructions.length > 80
+                            ? `${item.instructions.substring(0, 80)}...`
+                            : item.instructions}
+                    </p>
                     <div className={styles.buttonWrapper}>
                         <input
                             type="number"
