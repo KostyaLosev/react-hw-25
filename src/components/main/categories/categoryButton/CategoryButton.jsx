@@ -1,12 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
 import styles from "./categoryButton.module.css";
 
-const CategoryButton = ({ category, onClick }) => {
-    return (
-        <button className={styles.button} onClick={() => onClick(category)}>
-            {category}
-        </button>
-    );
-};
+class CategoryButton extends Component {
+    handleClick = () => {
+        const { category, onClick } = this.props;
+        onClick(category);
+    };
+
+    render() {
+        const { category } = this.props;
+
+        return (
+            <button className={styles.button} onClick={this.handleClick}>
+                {category}
+            </button>
+        );
+    }
+}
 
 export default CategoryButton;
