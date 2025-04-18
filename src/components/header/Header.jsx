@@ -3,15 +3,15 @@ import styles from "./header.module.css";
 import Logo from "../../assets/Logo.png";
 import Basket from "../../assets/Basket.png";
 
+const navLinks = [
+    { name: "Home", url: "#" },
+    { name: "Menu", url: "#" },
+    { name: "Company", url: "#" },
+    { name: "Login", url: "#" }
+];
+
 class Header extends Component {
     renderNavLinks() {
-        const navLinks = [
-            { name: "Home", url: "#" },
-            { name: "Menu", url: "#" },
-            { name: "Company", url: "#" },
-            { name: "Login", url: "#" }
-        ];
-
         return navLinks.map((link, index) => (
             <li key={index}>
                 <a href={link.url} style={link.name === "Menu" ? { color: "#35B8BE" } : {}}>

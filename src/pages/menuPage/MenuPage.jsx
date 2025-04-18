@@ -8,7 +8,8 @@ class MenuPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cartCount: 0
+            cartCount: 0,
+            categories: [] 
         };
     }
 
@@ -18,11 +19,19 @@ class MenuPage extends Component {
         }));
     };
 
+    handleCategoriesExtracted = (categories) => {
+        this.setState({ categories });
+    };
+
     render() {
         return (
             <div className={styles.container}>
                 <Header cartCount={this.state.cartCount} />
-                <Main incrementCart={this.incrementCart} />
+                <Main
+                    incrementCart={this.incrementCart}
+                    categories={this.state.categories}
+                    onCategoriesExtracted={this.handleCategoriesExtracted}
+                />
                 <Footer />
             </div>
         );

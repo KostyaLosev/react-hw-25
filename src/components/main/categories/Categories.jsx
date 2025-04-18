@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import styles from "./categories.module.css";
+import CategoryButton from "./categoryButton/CategoryButton";
 
 class Categories extends Component {
     render() {
-        const { categories } = this.props;
+        const { categories, onCategoryClick } = this.props;
 
         return (
             <div className={styles.categories}>
                 {categories.map((category) => (
-                    <button key={category}>
-                        {category}
-                    </button>
+                    <CategoryButton
+                        key={category}
+                        category={category}
+                        onClick={onCategoryClick}
+                    />
                 ))}
             </div>
         );

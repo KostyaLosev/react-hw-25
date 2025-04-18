@@ -5,25 +5,14 @@ import Categories from "./categories/Categories";
 import Items from "./items/Items";
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            categories: [],
-        };
-    }
-
-    handleCategoriesExtracted = (categories) => {
-        this.setState({ categories });
-    };
-
     render() {
         return (
             <div className={styles.main}>
                 <MainText />
-                <Categories categories={this.state.categories} />
+                <Categories categories={this.props.categories} />
                 <Items
                     incrementCart={this.props.incrementCart}
-                    onCategoriesExtracted={this.handleCategoriesExtracted}
+                    onCategoriesExtracted={this.props.onCategoriesExtracted}
                 />
             </div>
         );
