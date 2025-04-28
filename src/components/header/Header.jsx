@@ -3,13 +3,14 @@ import styles from "./header.module.css";
 import Logo from "../../assets/Logo.png";
 import Basket from "../../assets/Basket.png";
 
+const navLinks = [
+    { name: "Home", url: "#" },
+    { name: "Menu", url: "#" },
+    { name: "Company", url: "#" },
+    { name: "Login", url: "#" }
+];
+
 const Header = ({ cartCount }) => {
-    const navLinks = [
-        { name: "Home", url: "#" },
-        { name: "Menu", url: "#" },
-        { name: "Company", url: "#" },
-        { name: "Login", url: "#" }
-    ];
 
     return (
         <div className={styles.header}>

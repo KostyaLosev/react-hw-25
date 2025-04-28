@@ -6,39 +6,9 @@
     flex-wrap: wrap;
 }
 
-.categories button {
-    background: transparent;
-    border: 1px solid #61728333;
-    padding: 15px 30px;
-    font-size: 16px;
-    color: #222222;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-
-.categories button:hover {
-    background: #35B8BE;
-    color: #fff;
-}
-
-.categories button.active {
-    background: #35B8BE;
-    color: #fff;
-    border-color: #35B8BE;
-}
-
-
 @media (max-width: 1024px) {
     .categories {
         gap: 20px;
-    }
-
-    .categories button {
-        padding: 12px 25px;
-        font-size: 15px;
     }
 }
 
@@ -47,24 +17,11 @@
         flex-wrap: wrap;
         gap: 15px;
     }
-
-    .categories button {
-        width: 100%;
-        max-width: 300px;
-        text-align: center;
-    }
 }
 
 @media (max-width: 480px) {
     .categories {
         flex-direction: column;
         align-items: center;
-    }
-
-    .categories button {
-        width: 100%;
-        max-width: 280px;
-        padding: 10px 20px;
-        font-size: 14px;
     }
 }

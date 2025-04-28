@@ -3,12 +3,12 @@ import styles from "./items.module.css";
 import { fetchMeals } from "../../../services/api";
 import SeeMoreButton from "../seeMoreButton/SeeMoreButton";
 import Categories from "../categories/Categories";
+import ItemsCard from "./itemsCard/ItemsCard";
 
 const Items = ({ incrementCart }) => {
     const [itemsData, setItemsData] = useState([]);
     const [filteredItems, setFilteredItems] = useState([]);
-    const [visibleItems, setVisibleItems] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(6);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [categories, setCategories] = useState([]);
     const [quantities, setQuantities] = useState({});
@@ -17,7 +17,6 @@ const Items = ({ incrementCart }) => {
     useEffect(() => {
         const getMeals = async () => {
             const meals = await fetchMeals();
-            console.log("Data:", meals);
 
             const initialQuantities = meals.reduce((acc, item) => {
                 acc[item.id] = 1;
@@ -44,17 +43,11 @@ const Items = ({ incrementCart }) => {
             : itemsData;
 
         setFilteredItems(filtered);
-        setVisibleItems(filtered.slice(0, itemsPerPage));
         setCurrentIndex(itemsPerPage);
     }, [selectedCategory, itemsData]);
 
     const loadMore = () => {
-        const newIndex = currentIndex + itemsPerPage;
-        setVisibleItems([
-            ...visibleItems,
-            ...filteredItems.slice(currentIndex, newIndex),
-        ]);
-        setCurrentIndex(newIndex);
+        setCurrentIndex((prevIndex) => prevIndex + itemsPerPage);
     };
 
     const handleInputChange = (id, event) => {
@@ -80,33 +73,14 @@ const Items = ({ incrementCart }) => {
                 selectedCategory={selectedCategory}
             />
             <div className={styles.itemsgrid}>
-                {visibleItems.map((item) => (
-                    <div key={item.id} className={styles.itemscard}>
-                        <img src={item.img} alt={item.meal} />
-                        <div className={styles.itemscardContent}>
-                            <div className={styles.itemscardHeader}>
-                                <h3>{item.meal}</h3>
-                                <p>${item.price}</p>
-                            </div>
-                            <p className={styles.description}>
-                                {item.instructions.length > 80
-                                    ? `${item.instructions.substring(0, 80)}...`
-                                    : item.instructions}
-                            </p>
-                            <div className={styles.buttonWrapper}>
-                                <input
-                                    type="number"
-                                    value={quantities[item.id] || ""}
-                                    className={styles.counterInput}
-                                    min="0"
-                                    onChange={(e) => handleInputChange(item.id, e)}
-                                />
-                                <button onClick={() => handleAddToCart(item.id)}>
-                                    Add to cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                {filteredItems.slice(0, currentIndex).map((item) => (
+                    <ItemsCard
+                        key={item.id}
+                        item={item}
+                        quantity={quantities[item.id] || ""}
+                        onQuantityChange={(e) => handleInputChange(item.id, e)}
+                        onAddToCart={() => handleAddToCart(item.id)}
+                    />
                 ))}
             </div>
             {currentIndex < filteredItems.length && (

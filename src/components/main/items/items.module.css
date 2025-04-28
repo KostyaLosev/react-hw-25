@@ -6,120 +6,18 @@
     margin: 0 auto;
 }
 
-.itemscard {
-    display: flex;
-    align-items: center;
-    background-color: #FFFFFF;
-    border: 1px solid #35B8BE26;
-    border-radius: 8px;
-    padding: 26px;
-    gap: 30px;
-}
-
-.itemscard img {
-    width: 120px;
-    height: 120px;
-}
-
-.itemscardHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.itemscardHeader h3{
-    color: #08090A;
-    font-weight: 400;
-}
-
-.itemscardHeader p {
-    color: #35B8BE;
-}
-
-.description {
-    color: #546285;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: left;
-}
-
-.buttonWrapper {
-    display: flex;
-    align-items: center; 
-    gap: 8px; 
-}
-
-.counterInput {
-    border: 1px solid #DDDDDD;
-    border-radius: 6px;
-    text-align: center;
-    width: 60px;
-    height: 45px;
-    font-size: 16px;
-    padding: 0;
-}
-
-.counterInput::-webkit-inner-spin-button,
-.counterInput::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.buttonWrapper button {
-    background-color: #35B8BE;
-    color: #FFFFFF;
-    font-size: 16px;
-    border: none; 
-    border-radius: 6px;
-    padding: 10px 28px; 
-    height: 45px; 
-    transition: background 0.3s ease;
-}
-
-.buttonWrapper button:hover {
-    background: #149e99;
-}
-
-.buttonWrapper button:active {
-    transform: translateY(1px);
-}
-
-
 @media (max-width: 1024px) {
     .itemsgrid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
         max-width: 90%;
     }
-
-    .itemscard {
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .buttonWrapper {
-        flex-direction: row;
-    }
 }
 
 @media (max-width: 768px) {
     .itemsgrid {
-        grid-template-columns: repeat(1, 1fr); 
+        grid-template-columns: repeat(1, 1fr);
         gap: 15px;
-    }
-
-    .itemscard {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .description {
-        text-align: center;
-    }
-
-    .buttonWrapper {
-        justify-content: center;
     }
 }
 
@@ -128,22 +26,4 @@
         max-width: 100%;
         gap: 10px;
     }
-
-    .itemscard {
-        padding: 15px;
-    }
-
-    .counterInput {
-        width: 50px;
-        height: 40px;
-        font-size: 14px;
-    }
-
-    .buttonWrapper button {
-        font-size: 14px;
-        padding: 8px 20px;
-        height: 40px;
-    }
 }
-
-

@@ -1,17 +1,17 @@
 import React from "react";
 import styles from "./categories.module.css";
+import CategoryButton from "./categoryButton/CategoryButton";
 
 const Categories = ({ categories, onSelectCategory, selectedCategory }) => {
     return (
         <div className={styles.categories}>
             {categories.map((category) => (
-                <button
+                <CategoryButton
                     key={category}
-                    onClick={() => onSelectCategory(category)}
-                    className={selectedCategory === category ? styles.active : ""}
-                >
-                    {category}
-                </button>
+                    category={category}
+                    isSelected={selectedCategory === category}
+                    onClick={onSelectCategory}
+                />
             ))}
         </div>
     );

@@ -1,24 +1,25 @@
 import React from "react";
 import styles from "./footerLinks.module.css";
 
+const companyLinks = [
+    { name: "Home", url: "#" },
+    { name: "Order", url: "#" },
+    { name: "FAQ", url: "#" },
+    { name: "Contact", url: "#" },
+];
+
+const templateLinks = [
+    { name: "Style Guide", url: "https://www.google.com/" },
+    { name: "Changelog", url: "https://www.google.com/" },
+    { name: "Licence", url: "https://www.google.com/" },
+    { name: "Webflow University", url: "https://www.google.com/" },
+];
+
+const flowbaseLinks = [
+    { name: "More Cloneables", url: "#" }
+];
+
 const FooterLinks = () => {
-    const companyLinks = [
-        { name: "Home", url: "#" },
-        { name: "Order", url: "#" },
-        { name: "FAQ", url: "#" },
-        { name: "Contact", url: "#" },
-    ];
-
-    const templateLinks = [
-        { name: "Style Guide", url: "https://www.google.com/" },
-        { name: "Changelog", url: "https://www.google.com/" },
-        { name: "Licence", url: "https://www.google.com/" },
-        { name: "Webflow University", url: "https://www.google.com/" },
-    ];
-
-    const flowbaseLinks = [
-        { name: "More Cloneables", url: "#" }
-    ];
 
     const renderLinks = (links) => (
         <ul>
