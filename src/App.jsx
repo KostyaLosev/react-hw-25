@@ -1,7 +1,8 @@
-import React from "react";
-import MenuPage from "./pages/menuPage/menuPage"
+import React, {Component} from "react";
+import MenuPage from "./pages/menuPage/MenuPage"
 
-const App = () => {
+class App extends Component {
+    render() {
     return (
         
         <div>
@@ -9,5 +10,8 @@ const App = () => {
         </div>
     )
 }
+
+}
+
 
 export default App;
