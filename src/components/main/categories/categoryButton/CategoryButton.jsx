@@ -17,3 +17,4 @@ const CategoryButton = ({ category, isSelected, onClick }) => {
 };
 
 export default CategoryButton;
+

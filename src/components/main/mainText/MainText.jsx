@@ -13,3 +13,4 @@ const MainText = () => {
 };
 
 export default MainText;
+

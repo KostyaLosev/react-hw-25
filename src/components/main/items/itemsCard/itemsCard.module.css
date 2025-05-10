@@ -76,7 +76,6 @@
     transform: translateY(1px);
 }
 
-/* Адаптив для карточки */
 @media (max-width: 1024px) {
     .itemscard {
         flex-direction: column;
