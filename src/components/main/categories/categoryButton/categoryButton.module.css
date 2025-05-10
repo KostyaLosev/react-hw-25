@@ -15,9 +15,10 @@
     color: #fff;
 }
 
-.button:first-child {
+.active {
     background: #35B8BE;
     color: #fff;
+    border-color: #35B8BE;
 }
 
 @media (max-width: 1024px) {

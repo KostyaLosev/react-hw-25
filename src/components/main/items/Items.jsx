@@ -1,61 +1,93 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./items.module.css";
 import { fetchMeals } from "../../../services/api";
 import SeeMoreButton from "../seeMoreButton/SeeMoreButton";
-import ItemsCard from "./itemsCard/ItemsCard"
+import Categories from "../categories/Categories";
+import ItemsCard from "./itemsCard/ItemsCard";
 
-class Items extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            itemsData: [],
-            visibleCount: 6,
+const Items = ({ incrementCart }) => {
+    const [itemsData, setItemsData] = useState([]);
+    const [filteredItems, setFilteredItems] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(6);
+    const [selectedCategory, setSelectedCategory] = useState("");
+    const [categories, setCategories] = useState([]);
+    const [quantities, setQuantities] = useState({});
+    const itemsPerPage = 6;
+
+    useEffect(() => {
+        const getMeals = async () => {
+            const meals = await fetchMeals();
+
+            const initialQuantities = meals.reduce((acc, item) => {
+                acc[item.id] = 1;
+                return acc;
+            }, {});
+
+            const uniqueCategories = [...new Set(meals.map(item => item.category))];
+
+            setItemsData(meals);
+            setCategories(uniqueCategories);
+            setQuantities(initialQuantities);
+
+            if (uniqueCategories.length > 0) {
+                setSelectedCategory(uniqueCategories[0]);
+            }
         };
-    }
 
-    async componentDidMount() {
-        const meals = await fetchMeals();
+        getMeals();
+    }, []);
 
-        const categories = [...new Set(meals.map(item => item.category))];
+    useEffect(() => {
+        const filtered = selectedCategory
+            ? itemsData.filter((item) => item.category === selectedCategory)
+            : itemsData;
 
-        this.setState({ itemsData: meals });
+        setFilteredItems(filtered);
+        setCurrentIndex(itemsPerPage);
+    }, [selectedCategory, itemsData]);
 
-        if (this.props.onCategoriesExtracted) {
-            this.props.onCategoriesExtracted(categories);
-        }
-    }
+    const loadMore = () => {
+        setCurrentIndex((prevIndex) => prevIndex + itemsPerPage);
+    };
 
-    loadMore = () => {
-        this.setState((prevState) => ({
-            visibleCount: prevState.visibleCount + 6,
+    const handleInputChange = (id, event) => {
+        const value = parseInt(event.target.value, 10) || 0;
+        setQuantities((prevQuantities) => ({
+            ...prevQuantities,
+            [id]: value,
         }));
     };
 
-    handleAddToCart = (quantity) => {
-        if (quantity > 0) {
-            this.props.incrementCart(quantity);
+    const handleAddToCart = (id) => {
+        const quantityToAdd = quantities[id];
+        if (quantityToAdd > 0) {
+            incrementCart(quantityToAdd);
         }
     };
 
-    renderItems() {
-        const { itemsData, visibleCount } = this.state;
-        return itemsData.slice(0, visibleCount).map((item) => (
-            <ItemsCard key={item.id} item={item} onAddToCart={this.handleAddToCart} />
-        ));
-    }
-
-    render() {
-        const { itemsData, visibleCount } = this.state;
-
-        return (
-            <div>
-                <div className={styles.itemsgrid}>{this.renderItems()}</div>
-                {visibleCount < itemsData.length && (
-                    <SeeMoreButton onClick={this.loadMore} />
-                )}
+    return (
+        <div>
+            <Categories
+                categories={categories}
+                onSelectCategory={setSelectedCategory}
+                selectedCategory={selectedCategory}
+            />
+            <div className={styles.itemsgrid}>
+                {filteredItems.slice(0, currentIndex).map((item) => (
+                    <ItemsCard
+                        key={item.id}
+                        item={item}
+                        quantity={quantities[item.id] || ""}
+                        onQuantityChange={(e) => handleInputChange(item.id, e)}
+                        onAddToCart={() => handleAddToCart(item.id)}
+                    />
+                ))}
             </div>
-        );
-    }
-}
+            {currentIndex < filteredItems.length && (
+                <SeeMoreButton onClick={loadMore} />
+            )}
+        </div>
+    );
+};
 
 export default Items;

@@ -1,17 +1,12 @@
-import React, {Component} from "react";
-import MenuPage from "./pages/menuPage/MenuPage"
+import React from "react";
+import MenuPage from "./pages/menuPage/MenuPage";
 
-class App extends Component {
-    render() {
+const App = () => {
     return (
-        
         <div>
-            <MenuPage/>
+            <MenuPage />
         </div>
-    )
-}
-
-}
-
+    );
+};
 
 export default App;

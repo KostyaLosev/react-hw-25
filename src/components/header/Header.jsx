@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import styles from "./header.module.css";
-import Logo from "../../assets/Logo.png";
+import Logo from "../../assets/Logo.svg";
 import Basket from "../../assets/Basket.png";
 
 const navLinks = [
@@ -10,35 +10,32 @@ const navLinks = [
     { name: "Login", url: "#" }
 ];
 
-class Header extends Component {
-    renderNavLinks() {
-        return navLinks.map((link, index) => (
-            <li key={index}>
-                <a href={link.url} style={link.name === "Menu" ? { color: "#35B8BE" } : {}}>
-                    {link.name}
-                </a>
-            </li>
-        ));
-    }
+const Header = ({ cartCount }) => {
 
-    render() {
-        return (
-            <div className={styles.header}>
-                <div className={styles.container}>
-                    <div className={styles.logo}>
-                        <img src={Logo} alt="Logo" className={styles.logoImage} />
-                    </div>
-                    <nav className={styles.navigation}>
-                        <ul>{this.renderNavLinks()}</ul>
-                    </nav>
-                    <div className={styles.basket}>
-                        <img src={Basket} alt="Basket" className={styles.basket} />
-                        <span className={styles.cartCount}>{this.props.cartCount}</span> 
-                    </div>
+    return (
+        <div className={styles.header}>
+            <div className={styles.container}>
+                <div className={styles.logo}>
+                    <img src={Logo} alt="Logo" className={styles.logoImage} />
+                </div>
+                <nav className={styles.navigation}>
+                    <ul>
+                        {navLinks.map((link, index) => (
+                            <li key={index}>
+                                <a href={link.url} style={link.name === "Menu" ? { color: "#35B8BE" } : {}}>
+                                    {link.name}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+                <div className={styles.basket}>
+                    <img src={Basket} alt="Basket" className={styles.basket} />
+                    <span className={styles.cartCount}>{cartCount}</span>
                 </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default Header;

@@ -1,21 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
 import styles from "./categoryButton.module.css";
 
-class CategoryButton extends Component {
-    handleClick = () => {
-        const { category, onClick } = this.props;
+const CategoryButton = ({ category, isSelected, onClick }) => {
+    const handleClick = () => {
         onClick(category);
     };
 
-    render() {
-        const { category } = this.props;
-
-        return (
-            <button className={styles.button} onClick={this.handleClick}>
-                {category}
-            </button>
-        );
-    }
-}
+    return (
+        <button
+            className={`${styles.button} ${isSelected ? styles.active : ""}`}
+            onClick={handleClick}
+        >
+            {category}
+        </button>
+    );
+};
 
 export default CategoryButton;
+

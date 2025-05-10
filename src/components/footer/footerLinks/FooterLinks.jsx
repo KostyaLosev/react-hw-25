@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styles from "./footerLinks.module.css";
 
 const companyLinks = [
@@ -19,35 +19,32 @@ const flowbaseLinks = [
     { name: "More Cloneables", url: "#" }
 ];
 
-class FooterLinks extends Component {
-    renderLinks(links) {
-        return (
-            <ul>
-                {links.map((link, index) => (
-                    <li key={index}><a href={link.url}>{link.name}</a></li>
-                ))}
-            </ul>
-        );
-    }
+const FooterLinks = () => {
 
-    render() {
-        return (
-            <div className={styles.links}>
-                <div>
-                    <h4>COMPANY</h4>
-                    {this.renderLinks(companyLinks)}
-                </div>
-                <div>
-                    <h4>TEMPLATE</h4>
-                    {this.renderLinks(templateLinks)}
-                </div>
-                <div>
-                    <h4>FLOWBASE</h4>
-                    {this.renderLinks(flowbaseLinks)}
-                </div>
+    const renderLinks = (links) => (
+        <ul>
+            {links.map((link, index) => (
+                <li key={index}><a href={link.url}>{link.name}</a></li>
+            ))}
+        </ul>
+    );
+
+    return (
+        <div className={styles.links}>
+            <div>
+                <h4>COMPANY</h4>
+                {renderLinks(companyLinks)}
             </div>
-        );
-    }
-}
+            <div>
+                <h4>TEMPLATE</h4>
+                {renderLinks(templateLinks)}
+            </div>
+            <div>
+                <h4>FLOWBASE</h4>
+                {renderLinks(flowbaseLinks)}
+            </div>
+        </div>
+    );
+};
 
 export default FooterLinks;
