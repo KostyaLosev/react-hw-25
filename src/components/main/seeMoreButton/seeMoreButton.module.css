@@ -18,11 +18,10 @@
     background: #149e99;
 }
 
+
 .container button:active {
     transition: translateY(1px);;
 }
-
-
 
 @media (max-width: 1024px) {
     .container button {
