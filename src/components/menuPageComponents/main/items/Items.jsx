@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./items.module.css";
-import { fetchMeals } from "../../../services/api";
+import { fetchMeals } from "../../../../services/api";
 import SeeMoreButton from "../seeMoreButton/SeeMoreButton";
 import Categories from "../categories/Categories";
 import ItemsCard from "./itemsCard/ItemsCard";
