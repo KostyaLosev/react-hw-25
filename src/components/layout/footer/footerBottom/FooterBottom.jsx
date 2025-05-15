@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./footerBottom.module.css";
-import Instagram from "../../../assets/Instagram.png";
-import Twitter from "../../../assets/Twitter.png";
-import Youtube from "../../../assets/Youtube.png";
+import Instagram from "../../../../assets/Instagram.png";
+import Twitter from "../../../../assets/Twitter.png";
+import Youtube from "../../../../assets/Youtube.png";
 
 const FooterBottom = ({ text }) => {
     const formatText = (text) => {

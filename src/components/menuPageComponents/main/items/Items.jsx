@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./items.module.css";
-import { fetchMeals } from "../../../services/api";
+import { fetchMeals } from "../../../../services/api";
 import SeeMoreButton from "../seeMoreButton/SeeMoreButton";
 import Categories from "../categories/Categories";
 import ItemsCard from "./itemsCard/ItemsCard";
+import useFetchLogger from "../../../../hooks/useFetch"
 
 const Items = ({ incrementCart }) => {
     const [itemsData, setItemsData] = useState([]);
@@ -14,9 +15,11 @@ const Items = ({ incrementCart }) => {
     const [quantities, setQuantities] = useState({});
     const itemsPerPage = 6;
 
+    const {fetchWithLogging} = useFetchLogger();
+
     useEffect(() => {
         const getMeals = async () => {
-            const meals = await fetchMeals();
+            const meals = await fetchMeals(fetchWithLogging);
 
             const initialQuantities = meals.reduce((acc, item) => {
                 acc[item.id] = 1;
@@ -35,7 +38,7 @@ const Items = ({ incrementCart }) => {
         };
 
         getMeals();
-    }, []);
+    }, [fetchWithLogging]);
 
     useEffect(() => {
         const filtered = selectedCategory

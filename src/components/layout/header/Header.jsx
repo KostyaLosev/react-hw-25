@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./header.module.css";
-import Logo from "../../assets/Logo.svg";
-import Basket from "../../assets/Basket.png";
+import Logo from "../../../assets/Logo.svg";
+import Basket from "../../../assets/Basket.png";
 
 const navLinks = [
     { name: "Home", url: "#" },
@@ -22,7 +22,7 @@ const Header = ({ cartCount }) => {
                     <ul>
                         {navLinks.map((link, index) => (
                             <li key={index}>
-                                <a href={link.url} style={link.name === "Menu" ? { color: "#35B8BE" } : {}}>
+                                <a href={link.url} style={link.name === "Home" ? { color: "#35B8BE" } : {}}>
                                     {link.name}
                                 </a>
                             </li>
