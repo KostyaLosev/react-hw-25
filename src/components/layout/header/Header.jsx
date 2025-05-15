@@ -22,7 +22,7 @@ const Header = ({ cartCount }) => {
                     <ul>
                         {navLinks.map((link, index) => (
                             <li key={index}>
-                                <a href={link.url} style={link.name === "Menu" ? { color: "#35B8BE" } : {}}>
+                                <a href={link.url} style={link.name === "Home" ? { color: "#35B8BE" } : {}}>
                                     {link.name}
                                 </a>
                             </li>

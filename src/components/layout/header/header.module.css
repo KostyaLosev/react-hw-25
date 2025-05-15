@@ -54,6 +54,23 @@
     width: 24px;
 }
 
+.basket::after {
+    content: "0"; 
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: white;
+    color: #35B8BE;
+    font-size: 12px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 .cartCount {
     position: absolute;
     top: -5px;
