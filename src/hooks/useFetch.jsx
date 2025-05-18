@@ -17,10 +17,13 @@ const saveLogs = (logs) => {
     localStorage.setItem(LOG_KEY, JSON.stringify(trimmed));
 };
 
-const useFetchLogger = () => {
+const useFetch = () => {
     const logsRef = useRef(getStoredLogs()); 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    const [, forceUpdate] = useState(0);
+    const triggerUpdate = () => forceUpdate(n => n + 1);
 
     const fetchWithLogging = useCallback(async (url, options = {}) => {
         setLoading(true);
@@ -52,6 +55,7 @@ const useFetchLogger = () => {
 
                 logsRef.current = [...logsRef.current, entry];
                 saveLogs(logsRef.current);
+                triggerUpdate(); 
             }
 
             return response;
@@ -69,6 +73,7 @@ const useFetchLogger = () => {
 
                 logsRef.current = [...logsRef.current, errorLog];
                 saveLogs(logsRef.current);
+                triggerUpdate(); 
             }
 
             throw err;
@@ -80,15 +85,16 @@ const useFetchLogger = () => {
     const clearLogs = useCallback(() => {
         localStorage.removeItem(LOG_KEY);
         logsRef.current = [];
+        triggerUpdate(); 
     }, []);
 
     return {
         fetchWithLogging,
-        logs: logsRef.current, 
+        logs: logsRef.current,
         loading,
         error,
         clearLogs,
     };
 };
 
-export default useFetchLogger;
+export default useFetch;

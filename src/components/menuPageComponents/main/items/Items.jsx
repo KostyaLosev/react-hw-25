@@ -4,7 +4,7 @@ import { fetchMeals } from "../../../../services/api";
 import SeeMoreButton from "../seeMoreButton/SeeMoreButton";
 import Categories from "../categories/Categories";
 import ItemsCard from "./itemsCard/ItemsCard";
-import useFetchLogger from "../../../../hooks/useFetch"
+import useFetch from "../../../../hooks/useFetch"
 
 const Items = ({ incrementCart }) => {
     const [itemsData, setItemsData] = useState([]);
@@ -15,7 +15,7 @@ const Items = ({ incrementCart }) => {
     const [quantities, setQuantities] = useState({});
     const itemsPerPage = 6;
 
-    const {fetchWithLogging} = useFetchLogger();
+    const {fetchWithLogging} = useFetch();
 
     useEffect(() => {
         const getMeals = async () => {
