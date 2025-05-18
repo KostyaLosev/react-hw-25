@@ -1,0 +1,5 @@
+.formContainer {
+    background-color: #F5FBFC;
+    clip-path: polygon(0 2vw, 100% 0, 100% 100%, 0% 100%);
+    padding: 40px 20px;;
+}
