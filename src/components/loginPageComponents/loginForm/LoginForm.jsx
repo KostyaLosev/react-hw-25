@@ -2,19 +2,23 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../../firebase-config";
 import styles from "./loginForm.module.css";
+import { FaCheckCircle } from "react-icons/fa";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState(false);
 
     const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setSuccess(false);
 
     try {
         await signInWithEmailAndPassword(auth, email, password);
-        alert("You have successfully logged in");
+        setSuccess(true); 
+        localStorage.setItem("isLoggedIn", "true");
     } catch (err) {
         setError("Login error: " + err.message);
     }
@@ -24,6 +28,7 @@ const LoginForm = () => {
     setEmail("");
     setPassword("");
     setError("");
+    setSuccess(false);
     };
 
         return (
@@ -56,6 +61,12 @@ const LoginForm = () => {
             <button type="button" onClick={handleCancel} className={styles.cancelBtn}>Cancel</button>
         </div>
         {error && <p className={styles.error}>{error}</p>}
+        {success && (
+            <div className={styles.success}>
+            <FaCheckCircle className={styles.icon} />
+            <span>You have successfully logged in</span>
+            </div>
+        )}
         </form>
     </div>
     );
