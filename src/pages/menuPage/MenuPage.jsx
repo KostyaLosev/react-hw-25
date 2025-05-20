@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "./menuPage.module.css";
 import Footer from "../../components/layout/footer/Footer";
 import Header from "../../components/layout/header/Header";
 import Main from "../../components/menuPageComponents/main/Main";
@@ -12,7 +11,7 @@ const MenuPage = () => {
     };
 
     return (
-        <div className={styles.container}>
+        <div>
             <Header cartCount={cartCount} />
             <Main incrementCart={incrementCart} />
             <Footer />
