@@ -3,9 +3,10 @@ import styles from "./footerBottom.module.css";
 import Instagram from "../../../../assets/Instagram.png";
 import Twitter from "../../../../assets/Twitter.png";
 import Youtube from "../../../../assets/Youtube.png";
+import { FooterBottomProps } from "./FooterBottom.d"
 
-const FooterBottom = ({ text }) => {
-    const formatText = (text) => {
+const FooterBottom = ({ text }: FooterBottomProps) => {
+    const formatText = (text: string) => {
         const regex = /(Flowbase|Webflow)/g;
         const parts = text.split(regex);
         return parts.map((part, index) =>
