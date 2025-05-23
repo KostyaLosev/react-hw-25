@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./header.module.css";
 import Logo from "../../../assets/Logo.svg";
 import Basket from "../../../assets/Basket.png";
+import { HeaderCartCounterProp } from "./Header.d"
 
 const navLinks = [
     { name: "Home", url: "#" },
@@ -10,7 +11,7 @@ const navLinks = [
     { name: "Login", url: "#" }
 ];
 
-const Header = ({ cartCount }) => {
+const Header = ({ cartCount }: HeaderCartCounterProp) => {
 
     return (
         <div className={styles.header}>

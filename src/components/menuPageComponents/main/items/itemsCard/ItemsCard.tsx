@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./itemsCard.module.css";
+import { ItemsCardProps } from "./ItemsCard.d"
 
-const ItemsCard = ({ item, quantity, onQuantityChange, onAddToCart }) => {
+const ItemsCard = ({ item, quantity, onQuantityChange, onAddToCart }: ItemsCardProps) => {
     return (
         <div className={styles.itemscard}>
             <img src={item.img} alt={item.meal} />

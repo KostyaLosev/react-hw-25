@@ -4,15 +4,18 @@ import { fetchMeals } from "../../../../services/api";
 import SeeMoreButton from "../seeMoreButton/SeeMoreButton";
 import Categories from "../categories/Categories";
 import ItemsCard from "./itemsCard/ItemsCard";
-import useFetch from "../../../../hooks/useFetch"
+import useFetch from "../../../../hooks/useFetch";
+import { ItemsProps } from "./Items.d";
+import { Meals } from "../../../../types/Meals.d"
 
-const Items = ({ incrementCart }) => {
-    const [itemsData, setItemsData] = useState([]);
-    const [filteredItems, setFilteredItems] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(6);
-    const [selectedCategory, setSelectedCategory] = useState("");
-    const [categories, setCategories] = useState([]);
-    const [quantities, setQuantities] = useState({});
+
+const Items = ({ incrementCart }: ItemsProps) => {
+    const [itemsData, setItemsData] = useState<Meals[]>([]);
+    const [filteredItems, setFilteredItems] = useState<Meals[]>([]);
+    const [currentIndex, setCurrentIndex] = useState<number>(6);
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
+    const [categories, setCategories] = useState<string[]>([]);
+    const [quantities, setQuantities] = useState<Record<string, number>>({});
     const itemsPerPage = 6;
 
     const {fetchWithLogging} = useFetch();
@@ -21,10 +24,11 @@ const Items = ({ incrementCart }) => {
         const getMeals = async () => {
             const meals = await fetchMeals(fetchWithLogging);
 
-            const initialQuantities = meals.reduce((acc, item) => {
-                acc[item.id] = 1;
-                return acc;
-            }, {});
+            const initialQuantities: Record<string, number> = meals.reduce((acc, item) => {
+        acc[item.id] = 1;
+        return acc;
+        }, {} as Record<string, number>);
+
 
             const uniqueCategories = [...new Set(meals.map(item => item.category))];
 
@@ -53,7 +57,7 @@ const Items = ({ incrementCart }) => {
         setCurrentIndex((prevIndex) => prevIndex + itemsPerPage);
     };
 
-    const handleInputChange = (id, event) => {
+    const handleInputChange = (id: string, event: React.ChangeEvent<HTMLInputElement>) => {
         const value = parseInt(event.target.value, 10) || 0;
         setQuantities((prevQuantities) => ({
             ...prevQuantities,
@@ -61,7 +65,7 @@ const Items = ({ incrementCart }) => {
         }));
     };
 
-    const handleAddToCart = (id) => {
+    const handleAddToCart = (id: string) => {
         const quantityToAdd = quantities[id];
         if (quantityToAdd > 0) {
             incrementCart(quantityToAdd);

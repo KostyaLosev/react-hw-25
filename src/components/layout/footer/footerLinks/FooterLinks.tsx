@@ -1,27 +1,28 @@
 import React from "react";
 import styles from "./footerLinks.module.css";
+import { LinkItem } from "./FooterLinks.d"
 
-const companyLinks = [
+const companyLinks: LinkItem[] = [
     { name: "Home", url: "#" },
     { name: "Order", url: "#" },
     { name: "FAQ", url: "#" },
     { name: "Contact", url: "#" },
 ];
 
-const templateLinks = [
+const templateLinks: LinkItem[] = [
     { name: "Style Guide", url: "https://www.google.com/" },
     { name: "Changelog", url: "https://www.google.com/" },
     { name: "Licence", url: "https://www.google.com/" },
     { name: "Webflow University", url: "https://www.google.com/" },
 ];
 
-const flowbaseLinks = [
+const flowbaseLinks: LinkItem[] = [
     { name: "More Cloneables", url: "#" }
 ];
 
 const FooterLinks = () => {
 
-    const renderLinks = (links) => (
+    const renderLinks = (links: LinkItem[]) => (
         <ul>
             {links.map((link, index) => (
                 <li key={index}><a href={link.url}>{link.name}</a></li>

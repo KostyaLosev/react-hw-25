@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./categoryButton.module.css";
+import { CategoryButtonProps } from "./CategoryButton.d"
 
-const CategoryButton = ({ category, isSelected, onClick }) => {
+const CategoryButton = ({ category, isSelected, onClick }: CategoryButtonProps) => {
     const handleClick = () => {
         onClick(category);
     };
