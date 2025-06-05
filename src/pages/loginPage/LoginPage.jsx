@@ -5,7 +5,7 @@ import Footer from "../../components/layout/footer/Footer";
 const LoginPage = () => {
     return(
     <div>
-        <Header />
+        <Header cartCount={0}/>
         <MainLoginForm />
         <Footer/>
     </div>
