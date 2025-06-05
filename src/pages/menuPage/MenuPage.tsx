@@ -4,9 +4,9 @@ import Header from "../../components/layout/header/Header";
 import Main from "../../components/menuPageComponents/main/Main";
 
 const MenuPage = () => {
-    const [cartCount, setCartCount] = useState(0);
+    const [cartCount, setCartCount] = useState<number>(0);
 
-    const incrementCart = (amount) => {
+    const incrementCart = (amount: number) => {
         setCartCount(prevCount => prevCount + amount);
     };
 

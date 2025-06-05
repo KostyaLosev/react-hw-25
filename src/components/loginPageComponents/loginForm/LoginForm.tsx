@@ -3,16 +3,17 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../../firebase-config";
 import styles from "./loginForm.module.css";
 import { FaCheckCircle } from "react-icons/fa";
+import { State, Action } from "./LoginForm.d";
 
-const initialState = {
+const initialState: State = {
     email: "",
     password: "",
     error: "",
     success: false,
-};
+};  
 
-function reducer(state, action) {
-    switch (action.type) {
+function reducer(state: State, action: Action): State {
+switch (action.type) {
     case "SET_EMAIL":
         return { ...state, email: action.payload };
     case "SET_PASSWORD":
@@ -29,26 +30,30 @@ function reducer(state, action) {
 }
 
 const LoginForm = () => {
-    const [state, dispatch] = useReducer(reducer, initialState);
+const [state, dispatch] = useReducer(reducer, initialState);
 
-    const handleSubmit = async (e) => {
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch({ type: "LOGIN_ERROR", payload: "" }); 
+    dispatch({ type: "LOGIN_ERROR", payload: "" });
 
     try {
         await signInWithEmailAndPassword(auth, state.email, state.password);
         dispatch({ type: "LOGIN_SUCCESS" });
         localStorage.setItem("isLoggedIn", "true");
     } catch (err) {
+        if (err instanceof Error) {
         dispatch({ type: "LOGIN_ERROR", payload: "Login error: " + err.message });
+        } else {
+        dispatch({ type: "LOGIN_ERROR", payload: "Unknown login error" });
+        }
     }
-    };
+};
 
-    const handleCancel = () => {
+const handleCancel = () => {
     dispatch({ type: "RESET" });
-    };
+};
 
-    return (
+return (
     <div className={styles.formContainer}>
         <form className={styles.form} onSubmit={handleSubmit}>
         <label className={styles.label}>
@@ -94,4 +99,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
