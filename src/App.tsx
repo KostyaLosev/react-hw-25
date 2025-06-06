@@ -6,7 +6,7 @@ import LoginPage from "./pages/loginPage/LoginPage";
 const App = () => {
     return (
         <div>
-            <MenuPage />
+            <LoginPage />
         </div>
     );
 };
