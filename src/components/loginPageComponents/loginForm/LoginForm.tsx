@@ -1,12 +1,16 @@
-import { useReducer } from "react";
+import { useEffect } from "react";
 import styles from "./loginForm.module.css";
 import { FaCheckCircle } from "react-icons/fa";
 import { setEmail, setPassword, resetForm, loginUser } from "../../../features/AuthSlice";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
     const dispatch = useAppDispatch();
-    const { email, password, loading, error, success } = useAppSelector(state => state.auth);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+    const { email, password, loading, error, success, user } = useAppSelector(state => state.auth);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,6 +20,13 @@ const LoginForm = () => {
     const handleCancel = () => {
     dispatch(resetForm());
 };
+
+useEffect(() => {
+    if (user) {
+        navigate(from, { replace: true });
+    }
+}, [user, from, navigate]);
+
 
 return (
     <div className={styles.formContainer}>
