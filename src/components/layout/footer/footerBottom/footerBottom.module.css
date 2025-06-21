@@ -32,7 +32,8 @@
 
 .icon {
     opacity: 0.6;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, fill 0.3s ease;
+    fill: var(--icon-color);
 }
 
 .icon:hover {
