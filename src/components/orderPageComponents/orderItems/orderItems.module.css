@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #ffffff;
+    background-color: var(--color-border-subtle);
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -35,7 +35,7 @@
 .itemName {
     font-weight: 500;
     font-size: 1rem;
-    color: #333;
+    --color-link-h4: #d0d4d8;
 }
 
 .price {
