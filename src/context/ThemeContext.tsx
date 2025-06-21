@@ -10,19 +10,16 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     });
 
     useEffect(() => {
-  const root = document.documentElement;
+    const root = document.documentElement;
+    root.classList.add("theme-transition");
+    root.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
 
-  // добавляем класс для анимации
-  root.classList.add("theme-transition");
-  root.setAttribute("data-theme", theme);
-  localStorage.setItem("theme", theme);
-
-  // убираем через 400мс
-  const timeout = setTimeout(() => {
+    const timeout = setTimeout(() => {
     root.classList.remove("theme-transition");
-  }, 400);
+}, 400);
 
-  return () => clearTimeout(timeout);
+    return () => clearTimeout(timeout);
 }, [theme]);
 
     const toggleTheme = () => {
