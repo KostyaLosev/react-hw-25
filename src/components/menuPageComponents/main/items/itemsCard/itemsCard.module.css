@@ -1,7 +1,7 @@
 .itemscard {
     display: flex;
     align-items: center;
-    background-color: #FFFFFF;
+    background-color: var(--color-border-subtle);
     border: 1px solid #35B8BE26;
     border-radius: 8px;
     padding: 26px;
@@ -22,6 +22,7 @@
 .itemscardHeader h3 {
     color: #08090A;
     font-weight: 400;
+    color: var(--color-link-h4)
 }
 
 .itemscardHeader p {

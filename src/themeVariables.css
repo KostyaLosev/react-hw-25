@@ -1,0 +1,24 @@
+:root {
+    --color-bg-light: #F5FBFC;
+    --color-bg: white;
+    --color-accent: #35B8BE;
+    --color-border-subtle: white;
+    --color-link-h4:  #08090A;
+    --color-input-bg: #fdfdfd;
+}
+
+[data-theme="dark"] {
+    --color-bg-light: #101418;
+    --color-bg: #0d0d0d;
+    --color-accent: #35B8BE;
+    --color-border-subtle: #1a1f24;
+    --color-text: #d0d4d8;
+    --color-link-h4: #d0d4d8;
+    --color-input-bg: #181d22;
+    --color-input-text: #d0d4d8;
+    --icon-color: #1a1f24;
+}
+
+.theme-transition * {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}

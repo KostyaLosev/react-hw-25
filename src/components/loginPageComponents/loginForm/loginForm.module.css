@@ -3,11 +3,11 @@
     justify-content: center;
     align-items: center;
     padding: 30px;
-    background-color: #f5fbfc;
+    background-color: var(--color-bg-light);
 }
 
 .form {
-    background-color: white;
+    background-color: var(--color-border-subtle);
     padding: 50px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 500px;
@@ -28,6 +28,7 @@
 .label span {
     width: 100px; 
     flex-shrink: 0;
+    color: var(--color-text);
 }
 
 .input {

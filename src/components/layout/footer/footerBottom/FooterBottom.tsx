@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./footerBottom.module.css";
-import Instagram from "../../../../assets/Instagram.png";
-import Twitter from "../../../../assets/Twitter.png";
-import Youtube from "../../../../assets/Youtube.png";
+import Instagram from "../../../../assets/Instagram.svg";
+import Twitter from "../../../../assets/Twitter.svg";
+import Youtube from "../../../../assets/Youtube.svg";
 import { FooterBottomProps } from "./FooterBottom.d"
 
 const FooterBottom = ({ text }: FooterBottomProps) => {
