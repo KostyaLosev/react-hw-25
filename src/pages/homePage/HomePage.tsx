@@ -6,7 +6,7 @@ import Header from "../../components/layout/header/Header";
 const HomePage = () => {
     return (
         <div>
-            <Header cartCount={0}/>
+            <Header />
             <MainHome/>
             <Footer/>
         </div>
