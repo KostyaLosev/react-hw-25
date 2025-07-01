@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./header.module.css";
 import Logo from "../../../assets/Logo.svg";
 import Basket from "../../../assets/Basket.png";
-import { HeaderCartCounterProp } from "./Header.d"
+import { useAppSelector } from "../../../hooks/hooks";
 
 const navLinks = [
     { name: "Home", url: "#" },
@@ -11,31 +11,32 @@ const navLinks = [
     { name: "Login", url: "#" }
 ];
 
-const Header = ({ cartCount }: HeaderCartCounterProp) => {
+const Header = () => {
+    const cartCount = useAppSelector(state => state.cart.count);
 
-    return (
-        <div className={styles.header}>
-            <div className={styles.container}>
-                <div className={styles.logo}>
-                    <img src={Logo} alt="Logo" className={styles.logoImage} />
-                </div>
-                <nav className={styles.navigation}>
-                    <ul>
-                        {navLinks.map((link, index) => (
-                            <li key={index}>
-                                <a href={link.url} style={link.name === "Menu" ? { color: "#35B8BE" } : {}}>
-                                    {link.name}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-                <div className={styles.basket}>
-                    <img src={Basket} alt="Basket" className={styles.basket} />
-                    <span className={styles.cartCount}>{cartCount}</span>
-                </div>
-            </div>
+return (
+    <div className={styles.header}>
+        <div className={styles.container}>
+        <div className={styles.logo}>
+            <img src={Logo} alt="Logo" className={styles.logoImage} />
         </div>
+        <nav className={styles.navigation}>
+            <ul>
+            {navLinks.map((link, index) => (
+                <li key={index}>
+                <a href={link.url} style={link.name === "Menu" ? { color: "#35B8BE" } : {}}>
+                    {link.name}
+                </a>
+                </li>
+            ))}
+            </ul>
+        </nav>
+        <div className={styles.basket}>
+            <img src={Basket} alt="Basket" className={styles.basket} />
+            <span className={styles.cartCount}>{cartCount}</span>
+        </div>
+        </div>
+    </div>
     );
 };
 

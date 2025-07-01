@@ -4,19 +4,13 @@ import Header from "../../components/layout/header/Header";
 import Main from "../../components/menuPageComponents/main/Main";
 
 const MenuPage = () => {
-    const [cartCount, setCartCount] = useState<number>(0);
-
-    const incrementCart = (amount: number) => {
-        setCartCount(prevCount => prevCount + amount);
-    };
-
-    return (
-        <div>
-            <Header cartCount={cartCount} />
-            <Main incrementCart={incrementCart} />
-            <Footer />
-        </div>
-    );
+  return (
+    <div>
+      <Header />
+      <Main />
+      <Footer />
+    </div>
+  );
 };
 
 export default MenuPage;

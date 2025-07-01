@@ -1,56 +1,20 @@
 import { useReducer } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../../firebase-config";
 import styles from "./loginForm.module.css";
 import { FaCheckCircle } from "react-icons/fa";
-import { State, Action } from "./LoginForm.d";
-
-const initialState: State = {
-    email: "",
-    password: "",
-    error: "",
-    success: false,
-};  
-
-function reducer(state: State, action: Action): State {
-switch (action.type) {
-    case "SET_EMAIL":
-        return { ...state, email: action.payload };
-    case "SET_PASSWORD":
-        return { ...state, password: action.payload };
-    case "LOGIN_SUCCESS":
-        return { ...state, success: true, error: "" };
-    case "LOGIN_ERROR":
-        return { ...state, error: action.payload, success: false };
-    case "RESET":
-        return initialState;
-    default:
-        return state;
-    }
-}
+import { setEmail, setPassword, resetForm, loginUser } from "../../../features/AuthSlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 
 const LoginForm = () => {
-const [state, dispatch] = useReducer(reducer, initialState);
+    const dispatch = useAppDispatch();
+    const { email, password, loading, error, success } = useAppSelector(state => state.auth);
 
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch({ type: "LOGIN_ERROR", payload: "" });
-
-    try {
-        await signInWithEmailAndPassword(auth, state.email, state.password);
-        dispatch({ type: "LOGIN_SUCCESS" });
-        localStorage.setItem("isLoggedIn", "true");
-    } catch (err) {
-        if (err instanceof Error) {
-        dispatch({ type: "LOGIN_ERROR", payload: "Login error: " + err.message });
-        } else {
-        dispatch({ type: "LOGIN_ERROR", payload: "Unknown login error" });
-        }
-    }
+    dispatch(loginUser({ email, password }));
 };
 
-const handleCancel = () => {
-    dispatch({ type: "RESET" });
+    const handleCancel = () => {
+    dispatch(resetForm());
 };
 
 return (
@@ -61,10 +25,8 @@ return (
             <input
             type="email"
             placeholder="UserName"
-            value={state.email}
-            onChange={(e) =>
-                dispatch({ type: "SET_EMAIL", payload: e.target.value })
-            }
+            value={email}
+            onChange={(e) => dispatch(setEmail(e.target.value))}
             className={styles.input}
             required
             />
@@ -74,20 +36,22 @@ return (
             <input
             type="password"
             placeholder="********"
-            value={state.password}
-            onChange={(e) =>
-                dispatch({ type: "SET_PASSWORD", payload: e.target.value })
-            }
+            value={password}
+            onChange={(e) => dispatch(setPassword(e.target.value))}
             className={styles.input}
             required
             />
         </label>
         <div className={styles.buttonGroup}>
-            <button type="submit" className={styles.submitBtn}>Submit</button>
-            <button type="button" onClick={handleCancel} className={styles.cancelBtn}>Cancel</button>
+            <button type="submit" className={styles.submitBtn} disabled={loading}>
+            Submit
+            </button>
+            <button type="button" onClick={handleCancel} className={styles.cancelBtn}>
+            Cancel
+            </button>
         </div>
-        {state.error && <p className={styles.error}>{state.error}</p>}
-        {state.success && (
+        {error && <p className={styles.error}>{error}</p>}
+        {success && (
             <div className={styles.success}>
             <FaCheckCircle className={styles.icon} />
             <span>You have successfully logged in</span>
