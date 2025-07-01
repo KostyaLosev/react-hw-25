@@ -8,6 +8,7 @@ import Categories from "../categories/Categories";
 import ItemsCard from "./itemsCard/ItemsCard";
 import useFetch from "../../../../hooks/useFetch";
 import { addToCart } from "../../../../features/CartSlice"
+import { Meals } from "../../../../types/Meals";
 
 const Items = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -31,12 +32,18 @@ const Items = () => {
     dispatch(updateQuantity({ id, quantity: value }));
 };
 
-    const handleAddToCart = (id: string) => {
-    const quantityToAdd = quantities[id];
-    if (quantityToAdd > 0) {
-        dispatch(addToCart(quantityToAdd));  
+    const handleAddToCart = (item:Meals ) => {
+    const quantity = quantities[item.id];
+    if (quantity > 0) {
+    dispatch(addToCart({
+        id: item.id,
+        meal: item.meal,
+        price: item.price,
+        img: item.img,
+        quantity,
+    }));
     }
-    };
+};
 
     if (status === "loading") return <p>Loading...</p>;
     if (status === "failed") return <p>Failed to load items.</p>;
@@ -55,7 +62,7 @@ return (
             item={item}
             quantity={quantities[item.id] || ""}
             onQuantityChange={(e) => handleInputChange(item.id, e)}
-            onAddToCart={() => handleAddToCart(item.id)}
+            onAddToCart={() => handleAddToCart(item)}
             />
         ))}
         </div>

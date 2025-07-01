@@ -1,12 +1,12 @@
-import React from "react";
-import MenuPage from "./pages/menuPage/MenuPage";
-import HomePage from "./pages/homePage/HomePage";
-import LoginPage from "./pages/loginPage/LoginPage";
+import { BrowserRouter } from "react-router-dom";
+import Routes from "./routes/Routes"
 
 const App = () => {
     return (
         <div>
-            <LoginPage />
+            <BrowserRouter>
+                <Routes/>
+            </BrowserRouter>
         </div>
     );
 };
