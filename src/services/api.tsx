@@ -1,4 +1,4 @@
-import { Meals } from "../types/Meals"
+import { Meals } from "../types/Meals.d"
 import { FetchOptions } from "../hooks/useFetch.d"
 const API_URL = "https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals";
 
@@ -15,4 +15,6 @@ export const fetchMeals = async (fetchWithLogging: CustomFetch): Promise<Meals[]
     console.error("Error fetching meals:", error);
     return [];
   }
+
 };
+
