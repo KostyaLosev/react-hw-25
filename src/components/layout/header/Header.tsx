@@ -4,6 +4,7 @@ import Logo from "../../../assets/Logo.svg";
 import Basket from "../../../assets/Basket.png";
 import { useAppSelector } from "../../../hooks/hooks";
 import { Link, useLocation  } from "react-router-dom";
+import ThemeToggle from "../../themeToggle/ThemeToggle";
 
 const navLinks = [
     { name: "Home", url: "/" },
@@ -21,6 +22,9 @@ const location = useLocation();
 
 return (
     <div className={styles.header}>
+        <div className={styles.themeToggleBtn}>
+        <ThemeToggle />
+    </div>
         <div className={styles.container}>
         <div className={styles.logo}>
             <img src={Logo} alt="Logo" className={styles.logoImage} />

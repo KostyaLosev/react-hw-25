@@ -14,7 +14,7 @@ position: relative;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #F5FBFC;
+    background-color: var(--color-bg-light);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 18% 75%);
     z-index: -1;
   }
