@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Button = styled.button`
     margin-top: 30px;
@@ -16,9 +17,14 @@ const Button = styled.button`
     background: #439599;
     }
 `
-
 const PlaceAndOrderButton = () => {
-  return <Button>Place an Order</Button>;
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/menu'); 
+  };
+
+  return <Button onClick={handleClick}>Place an Order</Button>;
 };
 
 export default PlaceAndOrderButton;

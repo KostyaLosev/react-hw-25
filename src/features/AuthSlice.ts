@@ -10,6 +10,7 @@ const initialState: AuthState = {
     loading: false,
     error: null,
     success: false,
+    checking: true,
 };
 
 export const loginUser = createAsyncThunk<
@@ -33,6 +34,12 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
+    setChecking(state, action: PayloadAction<boolean>) {
+    state.checking = action.payload;
+    },    
+    setUser(state, action: PayloadAction<User | null>) {
+        state.user = action.payload;
+    },
     setEmail(state, action: PayloadAction<string>) {
         state.email = action.payload;
     },
@@ -70,5 +77,5 @@ const authSlice = createSlice({
     },
 });
 
-export const { setEmail, setPassword, resetForm, logout } = authSlice.actions;
+export const { setUser, setEmail, setPassword, resetForm, logout, setChecking } = authSlice.actions;
 export default authSlice.reducer;

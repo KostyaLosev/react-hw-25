@@ -7,10 +7,10 @@ interface Props {
 }
 
 const ProtectedRoute = ({ children }: Props) => {
-    const { user, loading } = useAppSelector((state) => state.auth);
+    const { user, checking  } = useAppSelector((state) => state.auth);
     const location = useLocation();
 
-    if (loading) return <div>Loading...</div>;
+    if (checking) return <div>Loading auth status...</div>;
     if (!user) return <Navigate to="/login" replace state={{ from: location }} />;
 
     return children;

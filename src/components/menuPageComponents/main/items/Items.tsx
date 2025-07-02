@@ -45,7 +45,16 @@ const Items = () => {
     }
 };
 
-    if (status === "loading") return <p>Loading...</p>;
+    if (status === "loading")
+        return (
+    <div className={styles.loadingContainer}>
+        <div className={styles.spinner}>
+        {[...Array(12)].map((_, i) => (
+            <div key={i}></div>
+        ))}
+        </div>
+    </div>
+    );
     if (status === "failed") return <p>Failed to load items.</p>;
 
 return (
