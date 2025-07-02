@@ -5,13 +5,11 @@ import "./themeVariables.css";
 
 const App = () => {
     return (
-        <div>
             <ThemeProvider>
                 <BrowserRouter>
                     <Routes/>
                 </BrowserRouter>
             </ThemeProvider>
-        </div>
     );
 };
 
